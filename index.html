@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sudut Camp Rental Alat Outdoor</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#f4f6f2;color:#222}
+button,input{font:inherit}
+header{position:sticky;top:0;z-index:10;padding:14px 5%;background:#123d2b;color:#fff}
+.nav{max-width:1100px;margin:auto;display:flex;justify-content:space-between;align-items:center}
+.logo{font-size:22px;font-weight:800}.logo span{color:#f4cf3a}.nav-links{display:flex;gap:20px;align-items:center}.nav-links a{color:#fff;text-decoration:none;font-weight:700}.nav-links a:hover{color:#f4cf3a}
+.btn{border:0;border-radius:12px;padding:12px 18px;font-weight:700;cursor:pointer}
+.btn:disabled{opacity:.6;cursor:not-allowed}.btn-green{background:#0c6b46;color:#fff}.btn-yellow{background:#f4cf3a;color:#173b2b}
+.hero{padding:45px 5%;background:linear-gradient(135deg,#173f2c,#2f6b4b);color:#fff}.profile{margin-top:25px}.profile-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:22px;align-items:center}.profile-copy h2{font-size:32px;margin-top:0;color:#123d2b}.profile-copy h2 span{color:#e87500}.profile-copy p{line-height:1.7;color:#4f5b53}.profile-list{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:20px}.profile-item{padding:15px;border-radius:14px;background:#edf3ed;text-align:center}.profile-item b{display:block;color:#123d2b;margin-bottom:5px}.profile-image{width:100%;display:block;border-radius:18px;box-shadow:0 8px 30px #00000018}@media(max-width:800px){.profile-grid{grid-template-columns:1fr}.profile-list{grid-template-columns:1fr}.nav-links{display:none}}
+.hero-inner{max-width:1100px;margin:auto}.hero h1{margin:0 0 10px;font-size:42px}.hero p{max-width:650px;line-height:1.6}
+.container{max-width:1100px;margin:25px auto;padding:0 15px}.layout{display:grid;grid-template-columns:1fr 350px;gap:20px}
+.card{padding:20px;background:#fff;border-radius:18px;box-shadow:0 5px 20px #00000010}
+.products{display:grid;grid-template-columns:repeat(2,1fr);gap:15px}.product{padding:15px;transition:transform .28s ease,box-shadow .28s ease;border:1px solid #e2e6e2;border-radius:15px}
+.product .pic{height:110px;display:flex;align-items:center;justify-content:center;border-radius:12px;background:#eaf0ea;font-size:52px}
+.product h3{margin:10px 0 5px}.product:hover{transform:translateY(-6px);box-shadow:0 14px 32px #00000018}.price{font-weight:800;color:#0c6b46}
+.product-row{display:flex;justify-content:space-between;align-items:center;margin-top:12px}
+.qty{display:flex;gap:8px;align-items:center}.qty button{width:32px;height:32px;border:0;border-radius:8px;background:#123d2b;color:#fff;cursor:pointer}
+label{display:block;font-weight:600}input{width:100%;margin:6px 0 14px;padding:13px;border:1px solid #ccd4cc;border-radius:10px;font-size:15px}
+input:disabled{background:#f1f3f1;color:#666}.duration-box{margin:4px 0 16px;padding:12px;border-radius:10px;background:#eaf0ea;color:#123d2b;font-weight:700}
+.cart-item{padding:12px 0;border-bottom:1px solid #eee}.cart-top{display:flex;justify-content:space-between;gap:10px}
+.muted{color:#69746d;font-size:13px}.total{margin:18px 0;font-size:22px;font-weight:800}
+.note{padding:12px;border-left:4px solid #f4cf3a;border-radius:8px;background:#fff8d8;font-size:13px;line-height:1.5}
+.result{display:none;margin-top:20px;padding:18px;border-radius:15px;background:#eaf7ee;border:1px solid #b9dfc5}
+.result h3{margin-top:0;color:#123d2b}.result-row{margin:8px 0}.wa{display:block;text-align:center;text-decoration:none;margin-top:12px}
+footer{padding:35px;text-align:center;color:#687168}
+@media(max-width:800px){.layout{grid-template-columns:1fr}.products{grid-template-columns:1fr}.hero h1{font-size:32px}}
+
+.profile-gallery{margin-top:22px;display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.profile-gallery figure{margin:0;overflow:hidden;border-radius:15px;background:#edf3ed;box-shadow:0 6px 20px #00000012}
+.profile-gallery img{width:100%;height:190px;display:block;object-fit:cover;transition:transform .45s ease,filter .45s ease}
+.profile-gallery figure:hover img{transform:scale(1.07);filter:brightness(1.04)}
+.profile-gallery figcaption{padding:9px 10px;font-size:12px;color:#526057;text-align:center}
+@media(max-width:800px){.profile-gallery{grid-template-columns:repeat(2,1fr)}.profile-gallery img{height:170px}}
+@media(max-width:480px){.profile-gallery{grid-template-columns:1fr}.profile-gallery img{height:220px}}
+
+
+.product .pic{
+  width:100%;
+  height:110px;
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:12px;
+  background:#eaf0ea;
+}
+
+.product .pic img{
+  display:block;
+  width:100% !important;
+  height:110px !important;
+  max-width:100%;
+  max-height:110px;
+  object-fit:contain;
+  border-radius:12px;
+}
+
+</style>
+<style>
+/* === Sudut Camp animations === */
+@keyframes scFadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+@keyframes scFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+.sc-reveal{animation:scFadeUp .7s ease both}
+.sc-hover{transition:transform .28s ease,box-shadow .28s ease}
+.sc-hover:hover{transform:translateY(-6px);box-shadow:0 14px 32px #00000018}
+.sc-btn{transition:transform .2s ease,box-shadow .2s ease}
+.sc-btn:hover{transform:translateY(-2px);box-shadow:0 8px 20px #00000018}
+.sc-float{animation:scFloat 3.5s ease-in-out infinite}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+</style>
+<style id="sudut-adventure-style">
+@keyframes sudutAdventureFade{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+#tentang-sudut-adventure{animation:sudutAdventureFade .8s ease both}
+@media(max-width:700px){
+  #tentang-sudut-adventure{margin-top:18px!important}
+  #tentang-sudut-adventure h2{font-size:1.5rem}
+}
+</style>
+</head>
+<body>
+<header><div class="nav"><div class="logo">SUDUT <span>CAMP RENTAL</span></div>
+<div class="nav-links"><a href="#profil">Profil</a><a href="#alat">Alat</a><a href="#booking">Booking</a><a href="https://www.instagram.com/sudut_adventure09?igsh=MWRuOHhqeXlkejluYw==" target="_blank" rel="noopener">Instagram</a><a href="#tentang-sudut-adventure">Tentang Sudut Adventure</a></div>
+<button class="btn btn-yellow" onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'})">Booking</button></div></header>
+
+<section class="hero sc-reveal"><div class="hero-inner">
+<h1>Perlengkapan Camping</h1>
+<p>Mohon lengkapi data diri anda</p>
+</div></section>
+
+<main class="container">
+<section class="card profile sc-reveal" id="profil"><div class="profile-grid"><div class="profile-copy"><h2>Profil <span>Sudut Camp</span></h2><p>Sudut Camp Rental hadir untuk membantu kamu menikmati kegiatan camping, hiking, dan aktivitas outdoor dengan perlengkapan yang praktis dan mudah disewa.</p><p>Kami mengutamakan proses sewa yang sederhana, informasi harga yang jelas, serta pelayanan yang ramah agar persiapan petualanganmu lebih nyaman.</p><div class="profile-list"><div class="profile-item"><b>Perlengkapan</b>Outdoor & camping</div><div class="profile-item"><b>Sewa Mudah</b>Booking online</div><div class="profile-item"><b>Pelayanan</b>Responsif & ramah</div></div></div><div><img class="profile-image" src="Logo baru.png" alt="Profil Sudut Camp"></div></div>
+<div class="profile-gallery sc-reveal" aria-label="Foto kegiatan Sudut Camp">
+  <figure><img src="profil-foto-1.jpg" alt="Kegiatan Sudut Camp di pegunungan" loading="lazy"><figcaption>Petualangan di pegunungan</figcaption></figure>
+  <figure><img src="profil-foto-2.jpg" alt="Kegiatan Sudut Camp di air terjun" loading="lazy"><figcaption>Eksplorasi alam</figcaption></figure>
+  <figure><img src="profil-foto-3.jpg" alt="Pendakian Sudut Camp di puncak" loading="lazy"><figcaption>Pendakian bersama</figcaption></figure>
+  <figure><img src="profil-foto-4.jpg" alt="Pendakian Sudut Camp di jalur pegunungan" loading="lazy"><figcaption>Perjalanan outdoor</figcaption></figure>
+</div>
+</section>
+
+<div class="layout" id="alat">
+<section class="card sc-reveal"><h2>Daftar Alat</h2><div class="products" id="products"></div></section>
+
+<aside class="card sc-reveal" id="booking">
+<h2>Form Booking</h2>
+<label for="nama">Nama</label><input id="nama" type="text" placeholder="Nama lengkap">
+<label for="wa">No. WhatsApp</label><input id="wa" type="tel" placeholder="08xxxxxxxxxx">
+<label for="mulai">Tanggal Mulai</label><input id="mulai" type="date" onchange="ubahTanggalKembali()">
+<label for="kembali">Tanggal Kembali</label><input id="kembali" type="date" disabled>
+<div class="duration-box">Durasi sewa: 2 hari • Harga tetap</div>
+<div id="cart"></div>
+<div class="total">Total: <span id="total">Rp0</span></div>
+<div class="note"><b>S&K:</b><br>
+• Wajib meninggalkan KTP/Kartu Pelajar/SIM.<br>
+• Kerusakan alat menjadi tanggung jawab penyewa.<br>
+• Cek alat sebelum meninggalkan tempat rental.<br>
+• Harga 1/2 hari sama.<br>
+• Jika terlambat, dikenakan tambahan 10%.</div><br>
+<button id="bookingButton" class="btn btn-green" style="width:100%" onclick="booking()">KONFIRMASI BOOKING</button>
+
+<div id="result" class="result">
+<h3>Booking Berhasil</h3>
+<div class="result-row"><b>No. Booking:</b> <span id="resultNo"></span></div>
+<div class="result-row"><b>Nama:</b> <span id="resultNama"></span></div>
+<div class="result-row"><b>Tanggal:</b> <span id="resultTanggal"></span></div>
+<div class="result-row"><b>Alat:</b><div id="resultItems"></div></div>
+<div class="result-row"><b>Total:</b> <span id="resultTotal"></span></div>
+<a id="waButton" class="btn btn-green wa" target="_blank" rel="noopener">KONFIRMASI VIA WHATSAPP</a>
+</div>
+</aside></div></main>
+
+
+<section id="tentang-sudut-adventure" class="card sc-reveal" style="margin-top:24px;">
+  <div style="display:grid;grid-template-columns:1fr;gap:18px;align-items:center;">
+    <div>
+      <span style="display:inline-block;font-weight:700;color:#d9ad16;letter-spacing:.08em;text-transform:uppercase;font-size:.85rem;">Tentang Kami</span>
+      <h2 style="margin:8px 0 10px;">Sudut Adventure</h2>
+      <p style="line-height:1.8;margin:0;">
+        <strong>Sudut Adventure</strong> adalah ruang bagi para pecinta alam untuk menikmati perjalanan,
+        camping, dan petualangan bersama. Kami hadir untuk mendukung kegiatan outdoor dengan semangat
+        kebersamaan, pengalaman, dan eksplorasi alam.
+      </p>
+      <p style="line-height:1.8;margin:12px 0 0;">
+        Melalui <strong>Sudut Camp Rental</strong>, kami menyediakan perlengkapan camping dengan proses
+        booking yang sederhana agar kamu bisa lebih mudah mempersiapkan perjalanan.
+      </p>
+    </div>
+  </div>
+</section>
+
+<footer>Sudut Camp Rental alat-alat • Perlengkapan Camping • <a href="#profil">Profil Sudut Camp</a> • <a href="https://www.instagram.com/sudut_adventure09?igsh=MWRuOHhqeXlkejluYw==" target="_blank" rel="noopener">Instagram @sudut_adventure09</a></footer>
+
+<script>
+// ==================== KONFIGURASI ====================
+const GOOGLE_SCRIPT_URL="https://script.google.com/macros/s/AKfycbwLXWxBIVHtSRjqqvcHJdvWjJtbQ_sAUh3GECVmqOkcZ9yu9YZXSMyW2Z_ue_5DmVKqkA/exec";
+const NOMOR_WA_RENTAL = "6285182673441"; // Ganti dengan nomor WhatsApp Sudut Camp
+const DURASI_SEWA = 2;
+let keranjang = [];
+
+const produk=[
+ ["Tenda 2 Layer Kap 4", 35000, "", "gambar/tenda.jpg"],
+    ["Tenda Bongkar Pasang", 50000, "", "gambar/tenda-bongkar.jpg"],
+  ["Flysheet 3x4", 15000, "", "gambar/flysheet.jpg"],
+  ["Keril Lokal 60L–70L", 20000, "", "gambar/keril-lokal.jpg"],
+  ["Hydropack", 20000, "", "gambar/hydropack.jpg"],
+  ["Sleeping Bag", 10000, "", "gambar/sleeping-bag.jpg"],
+  ["Matras", 5000, "", "gambar/matras.jpg"],
+  ["Headlamp Biasa", 5000, "", "gambar/headlamp-biasa.jpg"],
+  ["Headlamp Lubuk/Aoki", 15000, "", "gambar/headlamp-aoki.jpg"],
+  ["Lampu Tenda", 5000, "", "gambar/lampu-tenda.jpg"],
+  ["Jaket Outdoor", 20000, "", "gambar/jaket.jpg"],
+  ["Sepatu Outdoor", 25000, "", "gambar/sepatu.jpg"],
+  ["Gas Refil", 10000, "", "gambar/gas.jpg"],
+  ["Kompor Portable", 10000, "", "gambar/kompor.jpg"],
+  ["Nesting DS200", 10000, "", "gambar/nesting-ds200.jpg"],
+  ["Nesting DS500", 15000, "", "gambar/nesting-ds500.jpg"],
+  ["Cooking 1 Set", 25000, "", "gambar/cooking-set.jpg"],
+  ["Tracking Pole", 10000, "", "gambar/tracking-pole.jpg"]
+].map((x, i) => ({
+  id: i + 1,
+  nama: x[0],
+  harga: x[1],
+  icon: x[2],
+  gambar: x[3]
+}));
+
+// ==================== FUNGSI UTAMA ====================
+function rupiah(n){return "Rp"+Number(n).toLocaleString("id-ID")}
+function formatDateInput(d){return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`}
+function formatDateIndonesia(v){if(!v)return "-";const [y,m,d]=v.split("-");return `${d}/${m}/${y}`}
+
+function setMinDate(){
+ const now=new Date(); document.getElementById("mulai").min=formatDateInput(now);
+}
+function ubahTanggalKembali(){
+ const m=document.getElementById("mulai"), k=document.getElementById("kembali");
+ if(!m.value){k.value="";return}
+ const d=new Date(m.value+"T00:00:00");d.setDate(d.getDate()+DURASI_SEWA);k.value=formatDateInput(d);
+}
+
+function renderProducts(){
+  document.getElementById("products").innerHTML=produk.map(p=>`
+    <div class="product">
+      <div class="pic">
+        <img src="${p.gambar}" alt="${p.nama}"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
+        <span style="display:none;font-size:52px">${p.icon}</span>
+      </div>
+      <h3>${p.nama}</h3>
+      <div class="price">${rupiah(p.harga)} / 2 hari</div>
+      <div class="product-row">
+        <span class="muted">Jumlah</span>
+        <div class="qty">
+          <button onclick="ubahJumlah(${p.id},-1)">−</button>
+          <b id="q${p.id}">0</b>
+          <button onclick="ubahJumlah(${p.id},1)">+</button>
+        </div>
+      </div>
+    </div>
+  `).join("");
+}
+function ubahJumlah(id,delta){
+ let item=keranjang.find(x=>x.id===id);
+ if(!item&&delta>0){const p=produk.find(x=>x.id===id);keranjang.push({...p,jumlah:1})}
+ else if(item){item.jumlah+=delta;if(item.jumlah<=0)keranjang=keranjang.filter(x=>x.id!==id)}
+ renderCart();
+}
+function renderCart(){
+ produk.forEach(p=>{const el=document.getElementById("q"+p.id),item=keranjang.find(x=>x.id===p.id);if(el)el.textContent=item?item.jumlah:0});
+ document.getElementById("cart").innerHTML=keranjang.length?keranjang.map(i=>`
+ <div class="cart-item"><div class="cart-top"><b>${i.nama}</b><b>${i.jumlah}x</b></div>
+ <div class="muted">${rupiah(i.harga)} × ${i.jumlah} (paket 2 hari)</div></div>`).join(""):'<p class="muted">Belum ada alat dipilih.</p>';
+ hitungTotal();
+}
+function hitungTotal(){const t=keranjang.reduce((s,i)=>s+i.harga*i.jumlah,0);document.getElementById("total").textContent=rupiah(t);return t}
+
+function validasiWA(nomor){
+ let n=nomor.replace(/\D/g,""); if(n.startsWith("0"))n="62"+n.slice(1); return n;
+}
+
+function tampilkanHasil(data,noBooking){
+ document.getElementById("resultNo").textContent=noBooking;
+ document.getElementById("resultNama").textContent=data.nama;
+ document.getElementById("resultTanggal").textContent=formatDateIndonesia(data.mulai)+" - "+formatDateIndonesia(data.kembali);
+ document.getElementById("resultItems").innerHTML=data.items.map(i=>`${i.nama} — ${i.jumlah}x — ${rupiah(i.harga*i.jumlah)}`).join("<br>");
+ document.getElementById("resultTotal").textContent=rupiah(data.total);
+
+ const pesan=`Halo Sudut Camp Rental,%0A%0ASaya ingin konfirmasi booking:%0A%0ANo. Booking: ${noBooking}%0ANama: ${encodeURIComponent(data.nama)}%0ATanggal: ${formatDateIndonesia(data.mulai)} - ${formatDateIndonesia(data.kembali)}%0A%0A${data.items.map(i=>`• ${i.nama} (${i.jumlah}x)`).join("%0A")}%0A%0ATotal: ${rupiah(data.total)}`;
+ document.getElementById("waButton").href=`https://wa.me/${validasiWA(NOMOR_WA_RENTAL)}?text=${pesan}`;
+ document.getElementById("result").style.display="block";
+ document.getElementById("result").scrollIntoView({behavior:"smooth",block:"nearest"});
+}
+
+async function booking(){
+ const nama=document.getElementById("nama").value.trim(),wa=document.getElementById("wa").value.trim();
+ const mulai=document.getElementById("mulai").value,kembali=document.getElementById("kembali").value;
+ if(!nama||!wa||!mulai||!kembali||!keranjang.length){alert("Lengkapi data booking dan pilih minimal 1 alat.");return}
+
+ const data={nama,wa,mulai,kembali,durasi:DURASI_SEWA,total:hitungTotal(),items:keranjang.map(i=>({nama:i.nama,harga:i.harga,jumlah:i.jumlah}))};
+ const tombol=document.getElementById("bookingButton");tombol.disabled=true;tombol.textContent="MENYIMPAN...";
+ try{
+   const response=await fetch(GOOGLE_SCRIPT_URL,{method:"POST",mode:"cors",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(data)});
+   const hasil=await response.json();
+   if(!hasil.success)throw new Error(hasil.error||"Gagal menyimpan booking");
+   tampilkanHasil(data,hasil.nomorBooking);
+   alert("Booking berhasil disimpan!\nNo. Booking: "+hasil.nomorBooking);
+ }catch(e){
+   alert("Booking belum dapat dikirim. Pastikan Web App Apps Script sudah diatur 'Anyone' dan URL /exec benar.\n\nDetail: "+e.message);
+ }finally{tombol.disabled=false;tombol.textContent="KONFIRMASI BOOKING"}
+}
+setMinDate();renderProducts();renderCart();
+</script>
+</body>
+</html>
