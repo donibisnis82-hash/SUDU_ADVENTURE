@@ -1,0 +1,889 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="robots" content="noindex,nofollow,noarchive" />
+    <title>Admin | Sudut Camp Rental</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      :root {
+        --emerald: #087f5b;
+        --emerald2: #065f46;
+        --deep: #092b22;
+        --mint: #d1fae5;
+        --ink: #16372c;
+        --muted: #6c8278;
+        --line: #e1eee7;
+        --paper: #f3f8f5;
+      }
+      body {
+        background:
+          radial-gradient(ellipse at 10% 0%, #d7f5e5 0, transparent 36%),
+          var(--paper);
+        color: var(--ink);
+      }
+      .header {
+        background: linear-gradient(115deg, #052e24, #087f5b 65%, #10a36e);
+        box-shadow: 0 8px 28px #052e241c;
+      }
+      .header .logo {
+        color: #fff;
+      }
+      .header .logo span {
+        color: #a7f3d0;
+      }
+      .nav-menu a {
+        color: #eafff4;
+      }
+      .admin-wrap {
+        max-width: 1320px;
+        margin: 30px auto;
+        padding: clamp(12px, 3vw, 32px);
+      }
+      .section-title {
+        text-align: left;
+        margin: 0 0 24px;
+        padding: 28px 30px;
+        border-radius: 24px;
+        background: linear-gradient(120deg, #063c2e, #087f5b 70%, #11a779);
+        color: #fff;
+        box-shadow: 0 16px 36px #065f4628;
+        position: relative;
+        overflow: hidden;
+      }
+      .section-title:after {
+        content: "✦";
+        position: absolute;
+        right: 35px;
+        top: -25px;
+        font-size: 150px;
+        color: #ffffff12;
+      }
+      .section-title span {
+        display: inline-flex;
+        padding: 7px 11px;
+        border-radius: 99px;
+        background: #ffffff20;
+        color: #d1fae5;
+        font-size: 0.75rem;
+        font-weight: 800;
+        letter-spacing: 1.8px;
+      }
+      .section-title h2 {
+        font-size: clamp(1.8rem, 4vw, 2.6rem);
+        margin: 13px 0 7px;
+        letter-spacing: -0.7px;
+      }
+      .section-title p {
+        color: #d7f9e8;
+        margin: 0;
+      }
+      .admin-card {
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 22px;
+        padding: clamp(16px, 2.5vw, 26px);
+        margin: 18px 0;
+        color: var(--ink);
+        box-shadow: 0 10px 32px #063c2e0b;
+      }
+      .admin-card h3 {
+        font-size: 1.12rem;
+        margin: 0 0 16px;
+        display: flex;
+        align-items: center;
+        gap: 9px;
+      }
+      .admin-card h3:before {
+        content: "";
+        width: 5px;
+        height: 22px;
+        border-radius: 9px;
+        background: linear-gradient(#10b981, #047857);
+      }
+      .admin-card p {
+        color: var(--muted);
+        line-height: 1.65;
+      }
+      .admin-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 15px;
+      }
+      .admin-stat {
+        background: linear-gradient(145deg, #fff, #f0faf4);
+        border: 1px solid #dcefe4;
+        border-radius: 18px;
+        padding: 19px;
+        min-width: 0;
+        box-shadow: 0 7px 20px #065f4609;
+        position: relative;
+        overflow: hidden;
+      }
+      .admin-stat:after {
+        content: "";
+        position: absolute;
+        width: 68px;
+        height: 68px;
+        border-radius: 50%;
+        right: -20px;
+        top: -23px;
+        background: #a7f3d055;
+      }
+      .admin-stat span {
+        display: block;
+        font-size: 0.84rem;
+        color: #61786d;
+        margin-bottom: 12px;
+      }
+      .admin-stat b {
+        font-size: clamp(1.15rem, 2vw, 1.65rem);
+        display: block;
+        color: #066044;
+        overflow-wrap: anywhere;
+        letter-spacing: -0.5px;
+      }
+      .admin-wrap input,
+      .admin-wrap select,
+      .admin-wrap textarea {
+        box-sizing: border-box;
+        width: 100%;
+        padding: 12px 14px;
+        border-radius: 12px;
+        border: 1px solid #d4e5da;
+        background: #f8fcf9;
+        color: #16372c;
+        margin: 7px 0 12px;
+        outline: none;
+        transition:
+          border 0.18s,
+          box-shadow 0.18s;
+      }
+      .admin-wrap input:focus,
+      .admin-wrap select:focus,
+      .admin-wrap textarea:focus {
+        border-color: #10a36e;
+        box-shadow: 0 0 0 3px #10a36e20;
+      }
+      .admin-wrap label {
+        font-size: 0.87rem;
+        font-weight: 700;
+        color: #385b4a;
+      }
+      .admin-wrap button,
+      .admin-action {
+        border: 0;
+        border-radius: 12px;
+        padding: 12px 16px;
+        background: linear-gradient(120deg, #0b8b62, #066044);
+        color: #fff;
+        font-weight: 800;
+        cursor: pointer;
+        box-shadow: 0 5px 12px #06604420;
+        transition:
+          transform 0.15s,
+          filter 0.15s;
+      }
+      .admin-wrap button:hover {
+        filter: brightness(1.07);
+        transform: translateY(-1px);
+      }
+      #resetBookingsBtn {
+        background: #fff1f0 !important;
+        color: #a12b2b !important;
+        border: 1px solid #fecaca !important;
+        box-shadow: none !important;
+      }
+      #logoutBtn {
+        background: #edf4ef !important;
+        color: #365747 !important;
+        box-shadow: none !important;
+      }
+      .admin-table-wrap {
+        overflow: auto;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+      }
+      table {
+        border-collapse: collapse;
+        width: 100%;
+        min-width: 780px;
+        background: #fff;
+      }
+      th,
+      td {
+        text-align: left;
+        padding: 14px 13px;
+        border-bottom: 1px solid #edf3ef;
+        font-size: 0.87rem;
+        vertical-align: middle;
+      }
+      th {
+        color: #527365;
+        background: #f2faf5;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.7px;
+      }
+      tbody tr:hover {
+        background: #f7fcf9;
+      }
+      td small {
+        color: #82958b;
+      }
+      .admin-message {
+        margin: 10px 0;
+        color: #087f5b;
+        font-weight: 700;
+      }
+      .hidden {
+        display: none !important;
+      }
+      .admin-tools {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 16px;
+        align-items: end;
+      }
+      .admin-tools h3 {
+        margin-bottom: 8px;
+      }
+      #dailyChart,
+      #monthlyChart {
+        max-width: 100%;
+        border-radius: 14px;
+        background: linear-gradient(180deg, #f4fbf6, #fff);
+        padding: 8px;
+        box-sizing: border-box;
+      }
+      .admin-card canvas {
+        max-height: 220px;
+      }
+      .admin-card > button {
+        margin: 4px 5px 4px 0;
+      }
+      @media (max-width: 900px) {
+        .admin-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+      @media (max-width: 650px) {
+        .admin-tools {
+          grid-template-columns: 1fr;
+          gap: 5px;
+        }
+        .admin-wrap {
+          padding: 12px;
+          margin: 16px auto;
+        }
+        .section-title {
+          padding: 22px 18px;
+          border-radius: 18px;
+        }
+        .section-title:after {
+          right: 8px;
+          font-size: 100px;
+        }
+        .admin-card {
+          padding: 16px;
+          border-radius: 17px;
+        }
+        .admin-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 9px;
+        }
+        .admin-stat {
+          padding: 14px;
+          border-radius: 14px;
+        }
+        .admin-stat span {
+          font-size: 0.75rem;
+        }
+        .admin-stat b {
+          font-size: 1.2rem;
+        }
+        th,
+        td {
+          padding: 11px;
+          font-size: 0.8rem;
+        }
+        .admin-wrap button {
+          padding: 11px 12px;
+        }
+        
+/* Animasi loading login admin */
+#loginBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-width: 190px;
+  transition: all 0.25s ease;
+}
+
+#loginBtn:disabled {
+  opacity: 0.8;
+  cursor: wait;
+  transform: none;
+}
+
+.login-spinner {
+  width: 17px;
+  height: 17px;
+  border: 3px solid #ffffff55;
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: loginSpin 0.7s linear infinite;
+}
+
+@keyframes loginSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.login-loading {
+  animation: loginPulse 1.2s ease-in-out infinite;
+}
+
+@keyframes loginPulse {
+  50% {
+    opacity: 0.65;
+  }
+}
+
+#loginMessage {
+  transition: opacity 0.2s ease;
+}
+        
+/* PERBAIKAN RESPONSIF DASHBOARD */
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  overflow-x: hidden;
+}
+
+img,
+canvas {
+  max-width: 100%;
+}
+
+input,
+select,
+button,
+textarea {
+  max-width: 100%;
+  min-width: 0;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table-wrapper,
+.table-responsive {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+@media (max-width: 768px) {
+  body {
+    font-size: 14px;
+  }
+
+  header,
+  main,
+  .container,
+  .dashboard,
+  .content,
+  .main-content {
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .stats,
+  .stat-grid,
+  .stats-grid,
+  .summary-grid,
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .card,
+  .stat-card,
+  .panel {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  table {
+    min-width: 700px;
+  }
+
+  input,
+  select,
+  textarea {
+    width: 100%;
+  }
+}
+
+@media (max-width: 420px) {
+  .stats,
+  .stat-grid,
+  .stats-grid,
+  .summary-grid,
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <div class="nav-container">
+        <a href="index.html" class="logo">SUDUT <span>CAMP RENTAL</span></a>
+        <nav class="nav-menu"><a href="index.html">Kembali ke Website</a></nav>
+      </div>
+    </header>
+    <main class="admin-wrap">
+      <div class="section-title">
+        <span>🔐 AREA INTERNAL</span>
+        <h2>Dashboard Admin</h2>
+        <p>Kelola booking, status pesanan, pemasukan, dan pengembalian.</p>
+      </div>
+      <section class="admin-card" id="loginCard">
+        <h3>Login Admin</h3>
+        <label for="password">Password admin</label
+        ><input
+          id="password"
+          type="password"
+          autocomplete="current-password"
+          placeholder="Masukkan password admin"
+        /><button id="loginBtn">Masuk Dashboard</button>
+        <p id="loginMessage" class="admin-message" aria-live="polite"></p>
+        <p style="opacity: 0.8; font-size: 0.9rem"><code></code>.</p>
+      </section>
+      <div id="dashboard" class="hidden">
+        <section class="admin-grid" id="stats"></section>
+        <section class="admin-card">
+          <div class="admin-tools">
+            <div>
+              <h3>Daftar Booking</h3>
+              <input
+                id="searchBooking"
+                placeholder="Cari nomor booking atau nama"
+              />
+            </div>
+            <div>
+              <label for="statusFilter">Filter status</label
+              ><select id="statusFilter">
+                <option value="Semua">Semua status</option>
+                <option>Menunggu</option>
+                <option>Dikonfirmasi</option>
+                <option>Selesai</option>
+                <option>Dibatalkan</option>
+              </select>
+            </div>
+          </div>
+          <div class="admin-table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Booking</th>
+                  <th>Penyewa</th>
+                  <th>Tanggal</th>
+                  <th>Area</th>
+                  <th>Total</th>
+                  <th>Status</th>
+                  <th>Aksi</th>
+                </tr>
+              </thead>
+              <tbody id="bookingRows"></tbody>
+            </table>
+          </div>
+        </section>
+        <section class="admin-card">
+          <h3>Grafik Pemasukan</h3>
+          <div class="admin-grid">
+            <div>
+              <h4>Harian</h4>
+              <canvas id="dailyChart" height="180" style="width: 100%"></canvas>
+            </div>
+            <div>
+              <h4>Bulanan</h4>
+              <canvas
+                id="monthlyChart"
+                height="180"
+                style="width: 100%"
+              ></canvas>
+            </div>
+          </div>
+          <p style="opacity: 0.75; font-size: 0.85rem">
+            Grafik berdasarkan total nilai booking yang tidak dibatalkan, bukan
+            konfirmasi pembayaran.
+          </p>
+        </section>
+        <section class="admin-card">
+          <h3>Catat Pengembalian & Denda</h3>
+          <p>
+            Denda dihitung terpisah: minimal 12 jam terlambat, 10% harga asli
+            barang terlambat, sekali saja. Tenda Bongkar Pasang otomatis
+            dikecualikan.
+          </p>
+          <label for="returnBooking">Nomor booking</label
+          ><input id="returnBooking" placeholder="SCR-YYYYMMDD-HHMMSS" />
+          <div id="lateItemsBox" style="margin: 8px 0 14px"></div>
+          <label for="actualReturn">Waktu pengembalian aktual</label
+          ><input id="actualReturn" type="datetime-local" /><label
+            for="returnNotes"
+            >Catatan pengembalian</label
+          ><textarea
+            id="returnNotes"
+            rows="2"
+            placeholder="Kondisi barang, catatan denda, dll."
+          ></textarea
+          ><button id="returnBtn">Hitung & Simpan Pengembalian</button>
+          <p id="returnMessage" class="admin-message" aria-live="polite"></p>
+        </section>
+        <section class="admin-card">
+          <h3>Kelola Stok Produk (Google Sheets)</h3>
+          <p>
+            Data produk dapat dilihat di tab <b>Produk</b> pada Google Sheets.
+            Pengelolaan stok lebih lanjut perlu disesuaikan dengan katalog di
+            website.
+          </p>
+          <button id="refreshBtn">Muat Ulang Data</button>
+          <button
+            id="resetBookingsBtn"
+            style="background: #ffd7d7; color: #761d1d"
+          >
+            Reset Semua Booking</button
+          ><button id="logoutBtn" style="margin-left: 8px; background: #e1e8e2">
+            Keluar
+          </button>
+        </section>
+      </div>
+    </main>
+    <div id="toast" class="toast"></div>
+    <script>
+      const API =
+        "https://script.google.com/macros/s/AKfycbyIh0SwW8aZ7j05qrumzUdI6GtEnIl1wuHV96LXbLIpAOqAgWzJBr__Q7eXkvxJ-fGz7A/exec";
+      let password = "",
+        bookings = [];
+      const $ = id => document.getElementById(id);
+    
+const money = n => {
+  const angka = Number(n) || 0;
+  return new Intl.NumberFormat("id-ID", {
+    style: "currency",
+    currency: "IDR",
+    maximumFractionDigits: 0
+  }).format(angka);
+};
+
+async function api(payload) {
+  const r = await fetch(API, {
+    method: "POST",
+    headers: { "Content-Type": "text/plain;charset=utf-8" },
+    body: JSON.stringify({ ...payload, password })
+  });
+  const j = await r.json();
+  if (!j.success) throw Error(j.error || "Permintaan gagal");
+  return j;
+}
+
+$("loginBtn").onclick = async () => {
+  const btn = $("loginBtn");
+  const message = $("loginMessage");
+
+  password = $("password").value.trim();
+
+  if (!password) {
+    message.textContent = "Masukkan password admin terlebih dahulu.";
+    $("password").focus();
+    return;
+  }
+
+  const teksAwal = "Masuk Dashboard";
+
+  btn.disabled = true;
+  btn.classList.add("login-loading");
+  btn.innerHTML =
+    '<span class="login-spinner"></span><span>Memeriksa login...</span>';
+
+  message.textContent = "";
+
+  try {
+    await api({ action: "adminLogin" });
+
+    btn.innerHTML =
+      '<span class="login-spinner"></span><span>Login berhasil!</span>';
+
+    message.textContent = "Berhasil masuk. Memuat dashboard...";
+
+    $("loginCard").classList.add("hidden");
+    $("dashboard").classList.remove("hidden");
+
+    await refresh();
+  } catch (e) {
+    message.textContent = "Login gagal: " + e.message;
+    password = "";
+    $("password").value = "";
+  } finally {
+    btn.disabled = false;
+    btn.classList.remove("login-loading");
+    btn.textContent = teksAwal;
+  }
+};
+
+      async function refresh() {
+        try {
+          const d = await api({ action: "adminList" });
+          bookings = d.bookings || [];
+          const r = d.report || {};
+          $("stats").innerHTML = [
+            ["Total booking", r.jumlahBooking],
+            ["Menunggu", r.menunggu],
+            ["Dikonfirmasi", r.dikonfirmasi],
+            ["Selesai", r.selesai],
+            ["Total transaksi", money(r.totalTransaksi)],
+            ["Dana masuk", money(r.totalMasuk)],
+            ["Produk", r.jumlahProduk],
+            ["Stok menipis", r.stokMenipis]
+          ]
+            .map(
+              x =>
+                `<div class="admin-stat"><span>${x[0]}</span><b>${x[1] ?? 0}</b></div>`
+            )
+            .join("");
+          renderRows();
+          drawCharts();
+        } catch (e) {
+          $("loginMessage").textContent = e.message;
+        }
+      }
+      function renderRows() {
+        const q = $("searchBooking").value.toLowerCase(),
+          f = $("statusFilter").value;
+        const list = bookings.filter(
+          b =>
+            (f === "Semua" || b.status === f) &&
+            `${b.no} ${b.nama}`.toLowerCase().includes(q)
+        );
+        $("bookingRows").innerHTML =
+          list
+            .map(
+              b =>
+                `<tr><td><b>${esc(b.no)}</b><br><small>${esc(b.waktu)}</small></td><td>${esc(b.nama)}<br><small>${esc(b.wa)}</small></td><td>${esc(b.mulai)} – ${esc(b.kembali)}<br><small>${esc(b.durasi)}</small></td><td>${esc(b.area || "-")}</td><td>${money(b.total)}<br><small>Masuk: ${money(b.masuk)}</small></td><td><select data-status="${esc(b.no)}">${["Menunggu", "Dikonfirmasi", "Selesai", "Dibatalkan"].map(s => `<option ${s === b.status ? "selected" : ""}>${s}</option>`).join("")}</select></td><td><button data-save="${esc(b.no)}">Simpan</button> <button data-return="${esc(b.no)}">Pengembalian</button></td></tr>`
+            )
+            .join("") || '<tr><td colspan="7">Tidak ada booking.</td></tr>';
+        document.querySelectorAll("[data-save]").forEach(
+          btn =>
+            (btn.onclick = async () => {
+              const no = btn.dataset.save,
+                status = document.querySelector(
+                  `[data-status="${CSS.escape(no)}"]`
+                ).value;
+              try {
+                await api({ action: "adminSetStatus", no, status });
+                await refresh();
+              } catch (e) {
+                alert(e.message);
+              }
+            })
+        );
+        document.querySelectorAll("[data-return]").forEach(
+          btn =>
+            (btn.onclick = () => {
+              $("returnBooking").value = btn.dataset.return;
+              showLateItems();
+              document.querySelector("#actualReturn").focus();
+            })
+        );
+      }
+
+      function drawOneChart(id, labels, values) {
+        const c = $(id);
+        if (!c) return;
+        const ctx = c.getContext("2d"),
+          w = c.clientWidth || 420,
+          h = 180,
+          dpr = window.devicePixelRatio || 1;
+        c.width = w * dpr;
+        c.height = h * dpr;
+        ctx.scale(dpr, dpr);
+        ctx.clearRect(0, 0, w, h);
+        const max = Math.max(1, ...values),
+          left = 8,
+          bottom = 28,
+          top = 12,
+          plotH = h - top - bottom,
+          slot = (w - left - 8) / Math.max(1, values.length),
+          bw = Math.min(30, slot * 0.58);
+        ctx.font = "10px sans-serif";
+        values.forEach((v, i) => {
+          const bh = (v / max) * (plotH - 18),
+            x = left + i * slot + (slot - bw) / 2,
+            y = top + plotH - bh;
+          ctx.fillStyle = "#8de3a0";
+          ctx.beginPath();
+          ctx.roundRect(x, y, bw, bh, 4);
+          ctx.fill();
+          ctx.fillStyle = "#dcefe0";
+          ctx.textAlign = "center";
+          ctx.fillText(labels[i], x + bw / 2, h - 10);
+          if (v > 0) {
+            ctx.fillStyle = "#f2fff4";
+            ctx.fillText(
+              v >= 1000000
+                ? (v / 1000000).toFixed(1) + "jt"
+                : v >= 1000
+                  ? Math.round(v / 1000) + "k"
+                  : String(v),
+              x + bw / 2,
+              Math.max(10, y - 4)
+            );
+          }
+        });
+      }
+      function drawCharts() {
+        const daily = new Map(),
+          monthly = new Map();
+        bookings
+          .filter(b => b.status !== "Dibatalkan")
+          .forEach(b => {
+            const parts = String(b.waktu || "")
+              .split(" ")[0]
+              .split("/");
+            if (parts.length !== 3) return;
+            const key = parts[0] + "/" + parts[1];
+            daily.set(key, (daily.get(key) || 0) + Number(b.total || 0));
+            const mk = parts[1] + "/" + parts[2];
+            monthly.set(mk, (monthly.get(mk) || 0) + Number(b.total || 0));
+          });
+        const d = [...daily.entries()].slice(-7),
+          m = [...monthly.entries()].slice(-6);
+        drawOneChart(
+          "dailyChart",
+          d.map(x => x[0]),
+          d.map(x => x[1])
+        );
+        drawOneChart(
+          "monthlyChart",
+          m.map(x => x[0]),
+          m.map(x => x[1])
+        );
+      }
+      function esc(s) {
+        return String(s ?? "").replace(
+          /[&<>"']/g,
+          c =>
+            ({
+              "&": "&amp;",
+              "<": "&lt;",
+              ">": "&gt;",
+              '"': "&quot;",
+              "'": "&#39;"
+            })[c]
+        );
+      }
+      $("searchBooking").oninput = renderRows;
+      $("statusFilter").onchange = renderRows;
+      $("refreshBtn").onclick = refresh;
+      $("logoutBtn").onclick = () => {
+        password = "";
+        $("dashboard").classList.add("hidden");
+        $("loginCard").classList.remove("hidden");
+        $("password").value = "";
+      };
+      $("resetBookingsBtn").onclick = async () => {
+        const ok = confirm(
+          "PERINGATAN: Semua data booking di sheet Booking akan dihapus. Data Produk dan stok tidak dihapus. Lanjutkan?"
+        );
+        if (!ok) return;
+        const confirmText = prompt(
+          "Ketik RESET untuk mengonfirmasi penghapusan semua booking:"
+        );
+        if (confirmText !== "RESET") {
+          alert("Reset dibatalkan.");
+          return;
+        }
+        try {
+          const result = await api({ action: "resetBookings" });
+          alert(result.message || "Data booking berhasil direset.");
+          $("returnBooking").value = "";
+          $("actualReturn").value = "";
+          $("returnNotes").value = "";
+          $("lateItemsBox").innerHTML = "";
+          await refresh();
+        } catch (e) {
+          alert("Reset gagal: " + e.message);
+        }
+      };
+      $("returnBooking").addEventListener("change", showLateItems);
+      $("returnBooking").addEventListener("input", showLateItems);
+      function showLateItems() {
+        const b = bookings.find(x => x.no === $("returnBooking").value.trim());
+        if (!b) {
+          $("lateItemsBox").innerHTML = "";
+          return;
+        }
+        let items = [];
+        try {
+          items = JSON.parse(b.itemsJson || "[]");
+        } catch (e) {}
+        $("lateItemsBox").innerHTML =
+          '<strong>Pilih barang yang benar-benar terlambat</strong><p style="font-size:.85rem;opacity:.8">Tenda Bongkar Pasang otomatis dikecualikan.</p>' +
+          items
+            .map(i => {
+              const exempt = String(i.nama || "")
+                .toLowerCase()
+                .includes("tenda bongkar pasang");
+              return `<label style="display:flex;gap:8px;align-items:center;margin:8px 0"><input type="checkbox" value="${esc(i.id)}" ${exempt ? "disabled" : ""} ${exempt ? "" : "checked"}> ${esc(i.nama)} ×${Number(i.jumlah) || 1}${exempt ? " — bebas denda" : ""}</label>`;
+            })
+            .join("");
+      }
+      $("returnBtn").onclick = async () => {
+        const no = $("returnBooking").value.trim(),
+          aktual = $("actualReturn").value;
+        if (!no || !aktual) {
+          $("returnMessage").textContent =
+            "Isi nomor booking dan waktu pengembalian aktual.";
+          return;
+        }
+        try {
+          const lateItems = [
+            ...$("lateItemsBox").querySelectorAll(
+              "input[type=checkbox]:checked"
+            )
+          ].map(x => x.value);
+          const r = await api({
+            action: "adminReturn",
+            no,
+            aktual,
+            lateItems,
+            catatan: $("returnNotes").value
+          });
+          $("returnMessage").textContent =
+            `${r.message} Keterlambatan: ${r.jamTerlambat} jam. Denda: ${money(r.denda)}.`;
+          await refresh();
+        } catch (e) {
+          $("returnMessage").textContent = e.message;
+        }
+      };
+    </script>
+  </body>
+</html>

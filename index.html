@@ -1,0 +1,469 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Sudut Camp Rental | Outdoor Adventure</title>
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <!-- WHATSAPP FLOATING -->
+    <a
+      href="https://wa.me/6285182673441"
+      class="wa-floating"
+      target="_blank"
+      rel="noopener"
+      aria-label="Chat WhatsApp"
+    >
+      <span>💬</span>
+      <div>
+        <strong>Chat Kami</strong>
+        <small>WhatsApp</small>
+      </div>
+    </a>
+
+    <!-- DARK MODE -->
+    <button id="darkModeBtn" class="dark-mode-btn" aria-label="Ganti tema">
+      🌙
+    </button>
+
+    <!-- LOADING SCREEN -->
+    <div id="loadingScreen" class="loading-screen">
+      <div class="loading-box">
+        <div class="loading-icon" id="loadingIcon">🏕️</div>
+
+        <h2>SUDUT CAMP</h2>
+        <span class="loading-rental">RENTAL</span>
+
+        <div class="loading-message" id="loadingMessage">
+          Menyiapkan petualanganmu...
+        </div>
+
+        <div class="loading-wait">⏳ Harap menunggu...</div>
+
+        <div class="loading-dots">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+
+        <div class="loading-progress">
+          <div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= HEADER ================= -->
+
+    <header class="header">
+      <div class="nav-container">
+        <a href="#" class="logo"> SUDUT <span>CAMP RENTAL</span> </a>
+
+        <!-- MENU DESKTOP -->
+        <nav class="nav-menu" id="navMenu">
+          <a href="profil.html">Profil</a>
+          <a href="#alat">Alat</a>
+          <a href="booking.html">Booking</a>
+          <a href="admin.html">Admin</a>
+          <a href="#tentang">Tentang</a>
+          <a href="testimoni.html">Testimoni</a>
+          <a href="lokasi.html">Lokasi</a>
+
+          <a href="https://www.instagram.com/" target="_blank" rel="noopener">
+            Instagram
+          </a>
+        </nav>
+
+        <a href="booking.html" class="nav-booking"> Booking </a>
+
+        <!-- TOMBOL MENU HP -->
+        <button class="menu-toggle" id="menuToggle" aria-label="Buka menu">
+          ☰
+        </button>
+      </div>
+    </header>
+
+    <!-- KATEGORI VISUAL -->
+    <section class="category-premium">
+      <div class="section-title">
+        <span>JELAJAHI</span>
+
+        <h2>Pilih Kebutuhanmu</h2>
+
+        <p>Temukan perlengkapan yang cocok untuk petualanganmu.</p>
+      </div>
+
+      <div class="category-grid">
+        <button
+          class="category-card"
+          onclick="document.querySelector('[data-category=\\'Tenda\\']')?.click(); document.getElementById('alat')?.scrollIntoView({behavior:'smooth'});"
+        >
+          <div>🏕️</div>
+          <strong>Tenda</strong>
+          <small>Tempat beristirahat</small>
+        </button>
+
+        <button
+          class="category-card"
+          onclick="document.querySelector('[data-category=\\'Camping\\']')?.click(); document.getElementById('alat')?.scrollIntoView({behavior:'smooth'});"
+        >
+          <div>🔥</div>
+          <strong>Camping</strong>
+          <small>Perlengkapan camping</small>
+        </button>
+
+        <button
+          class="category-card"
+          onclick="document.querySelector('[data-category=\\'Cooking\\']')?.click(); document.getElementById('alat')?.scrollIntoView({behavior:'smooth'});"
+        >
+          <div>🍳</div>
+          <strong>Cooking</strong>
+          <small>Peralatan memasak</small>
+        </button>
+
+        <button
+          class="category-card"
+          onclick="document.querySelector('[data-category=\\'Outdoor\\']')?.click(); document.getElementById('alat')?.scrollIntoView({behavior:'smooth'});"
+        >
+          <div>🥾</div>
+          <strong>Outdoor</strong>
+          <small>Perlengkapan perjalanan</small>
+        </button>
+      </div>
+    </section>
+
+    <!-- ================= ALAT RENTAL ================= -->
+
+    <section id="alat" class="products-section">
+      <div class="section-title">
+        <span>🎒 PERLENGKAPAN</span>
+
+        <h2>Alat Outdoor</h2>
+
+        <p>
+          Cari dan pilih perlengkapan yang kamu butuhkan untuk petualanganmu.
+        </p>
+      </div>
+
+      <!-- PENCARIAN -->
+
+      <div class="product-tools">
+        <div class="quick-actions">
+          ❤️ Favorit tersimpan: <strong id="favoriteCount">0</strong>
+        </div>
+
+        <div class="search-box">
+          <span>🔎</span>
+
+          <input
+            type="search"
+            id="searchProduct"
+            placeholder="Cari alat outdoor..."
+          />
+        </div>
+
+        <!-- KATEGORI -->
+
+        <div class="category-buttons">
+          <button class="category-btn active" data-category="Semua">
+            Semua
+          </button>
+
+          <button class="category-btn" data-category="Tenda">⛺ Tenda</button>
+
+          <button class="category-btn" data-category="Camping">
+            🎒 Camping
+          </button>
+
+          <button class="category-btn" data-category="Cooking">
+            🍳 Cooking
+          </button>
+
+          <button class="category-btn" data-category="Outdoor">
+            🥾 Outdoor
+          </button>
+        </div>
+      </div>
+
+      <!-- PRODUK -->
+
+      <div class="products" id="products"></div>
+
+      <p id="noProduct" class="no-product" style="display: none">
+        😕 Alat yang kamu cari tidak ditemukan.
+      </p>
+    </section>
+
+    <!-- ================= BOOKING ================= -->
+
+    <section id="booking" class="booking-section">
+      <div class="section-title">
+        <span>📋 PEMESANAN</span>
+
+        <h2>Booking Alat Outdoor</h2>
+
+        <p>Isi data penyewaan dan pilih perlengkapan yang ingin kamu sewa.</p>
+      </div>
+
+      <div class="booking-box">
+        <!-- FORM -->
+
+        <div class="booking-form">
+          <h3>Data Penyewa</h3>
+
+          <label> Nama Lengkap </label>
+
+          <input
+            id="nama"
+            type="text"
+            autocomplete="name"
+            placeholder="Masukkan nama lengkap"
+          />
+
+          <label> Nomor WhatsApp </label>
+
+          <input
+            id="wa"
+            type="tel"
+            autocomplete="tel"
+            placeholder="08xxxxxxxxxx"
+          />
+
+          <label> Tanggal Mulai </label>
+
+          <input id="mulai" type="date" />
+
+          <label> Tanggal Kembali </label>
+
+          <input id="kembali" type="date" />
+
+          <label for="waktuKembali">Jam Pengembalian yang Disepakati</label>
+          <input id="waktuKembali" type="time" value="18:00" />
+
+          <label for="areaSewa">Area Sewa</label>
+          <select id="areaSewa">
+            <option value="Puncak Tombo">Puncak Tombo</option>
+            <option value="Area lainnya">Area lainnya</option>
+          </select>
+          <p class="booking-note">
+            ⛺ Tenda Bongkar Pasang khusus Puncak Tombo dan bebas denda.
+          </p>
+        </div>
+
+        <!-- KERANJANG -->
+
+        <div class="booking-cart">
+          <h3>🛒 Pesanan Kamu</h3>
+
+          <div id="cart">
+            <p class="empty-cart">Belum ada alat yang dipilih.</p>
+          </div>
+
+          <div id="durationInfo" class="duration-info">
+            Durasi sewa: 1 hari (tarif 1–2 hari sama; hari ke-3 menambah satu
+            tarif)
+          </div>
+
+          <div class="cart-total">
+            <span> Total </span>
+
+            <strong id="total"> Rp0 </strong>
+          </div>
+
+          <button id="bookingButton" onclick="booking()" class="booking-submit">
+            Booking Sekarang
+          </button>
+
+          <!-- HASIL BOOKING -->
+
+          <div id="result" class="booking-result" style="display: none">
+            <h3>✅ Booking Berhasil</h3>
+
+            <p>
+              Nomor Booking:
+              <strong id="resultNo"></strong>
+            </p>
+
+            <p>
+              Nama:
+              <strong id="resultNama"></strong>
+            </p>
+
+            <p>
+              Tanggal:
+              <strong id="resultTanggal"></strong>
+            </p>
+
+            <p>
+              Alat:
+              <strong id="resultItems"></strong>
+            </p>
+
+            <p>
+              Total:
+              <strong id="resultTotal"></strong>
+            </p>
+
+            <a id="waButton" class="wa-button" target="_blank" rel="noopener">
+              💬 Konfirmasi WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PAKET CAMPING ================= -->
+    <section class="packing-section" id="paketCamping">
+      <div class="section-title">
+        <span>🏕️ PAKET PILIHAN</span>
+        <h2>Paket Camping Praktis</h2>
+        <p>
+          Pilih paket perlengkapan, lalu sesuaikan isi keranjang sebelum
+          booking. Harga dihitung otomatis sesuai tarif durasi.
+        </p>
+      </div>
+      <div class="bundle-grid">
+        <article class="packing-card bundle-card">
+          <div class="bundle-emoji">🌿</div>
+          <h3>Paket Camping Hemat</h3>
+          <p>Tenda, sleeping bag, matras, dan lampu tenda.</p>
+          <button
+            type="button"
+            onclick="pilihPaket('hemat')"
+            class="booking-submit"
+          >
+            Pilih Paket
+          </button>
+        </article>
+        <article class="packing-card bundle-card">
+          <div class="bundle-emoji">💚</div>
+          <h3>Paket Camping Berdua</h3>
+          <p>Tenda, dua sleeping bag, dua matras, dan lampu tenda.</p>
+          <button
+            type="button"
+            onclick="pilihPaket('berdua')"
+            class="booking-submit"
+          >
+            Pilih Paket
+          </button>
+        </article>
+        <article class="packing-card bundle-card">
+          <div class="bundle-emoji">🔥</div>
+          <h3>Paket Masak Outdoor</h3>
+          <p>Kompor portable, cooking set, nesting, dan pan.</p>
+          <button
+            type="button"
+            onclick="pilihPaket('masak')"
+            class="booking-submit"
+          >
+            Pilih Paket
+          </button>
+        </article>
+      </div>
+      <p class="booking-note" style="text-align: center">
+        Paket hanya membantu memilih barang; harga tetap mengikuti tarif
+        masing-masing produk, bukan harga diskon tambahan.
+      </p>
+    </section>
+
+    <!-- ================= CHECKLIST CAMPING ================= -->
+    <section id="checklist" class="packing-section">
+      <div class="section-title">
+        <span>✅ BIAR NGGAK ADA YANG KETINGGALAN</span>
+        <h2>Checklist Persiapan Camping</h2>
+        <p>
+          Centang barang yang sudah kamu siapkan. Checklist tersimpan otomatis
+          di perangkat ini.
+        </p>
+      </div>
+      <div class="packing-card">
+        <div class="packing-progress-row">
+          <strong id="packingProgressText">0 dari 8 siap</strong>
+          <button type="button" id="packingReset" class="packing-reset">
+            Ulangi checklist
+          </button>
+        </div>
+        <div class="packing-progress"><div id="packingProgressBar"></div></div>
+        <div class="packing-grid" id="packingChecklist">
+          <label
+            ><input type="checkbox" value="Tenda" /> ⛺ Tenda dan
+            flysheet</label
+          >
+          <label
+            ><input type="checkbox" value="Tidur" /> 🛏️ Sleeping bag dan
+            matras</label
+          >
+          <label
+            ><input type="checkbox" value="Masak" /> 🍳 Kompor dan alat
+            masak</label
+          >
+          <label
+            ><input type="checkbox" value="Lampu" /> 🔦 Lampu atau
+            headlamp</label
+          >
+          <label
+            ><input type="checkbox" value="Air" /> 💧 Air minum dan
+            hydropack</label
+          >
+          <label
+            ><input type="checkbox" value="Pakaian" /> 🧥 Pakaian hangat dan jas
+            hujan</label
+          >
+          <label
+            ><input type="checkbox" value="P3K" /> 🩹 P3K dan obat
+            pribadi</label
+          >
+          <label
+            ><input type="checkbox" value="Sampah" /> 🗑️ Kantong sampah</label
+          >
+        </div>
+        <p class="packing-tip">
+          💡 Belum punya perlengkapannya? Pilih alat yang kamu butuhkan di
+          bagian Alat Outdoor.
+        </p>
+        <a class="packing-link" href="#alat">Lihat alat rental →</a>
+      </div>
+    </section>
+
+    <!-- ================= TENTANG ================= -->
+
+    <section id="tentang" class="about-section">
+      <div class="about-content">
+        <span> 🌲 SUDUT CAMP </span>
+
+        <h2>Teman Perjalanan Outdoor Kamu</h2>
+
+        <p>
+          Kami siap membantu mempersiapkan kebutuhan camping dan outdoor kamu.
+        </p>
+
+        <a href="booking.html" class="btn-primary"> Mulai Booking </a>
+      </div>
+    </section>
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer class="footer">
+      <div>
+        <h3>SUDUT CAMP RENTAL</h3>
+
+        <p>Outdoor Rental & Adventure</p>
+      </div>
+
+      <div>
+        <p>© 2026 Sudut Camp Rental</p>
+
+        <a href="https://www.instagram.com/" target="_blank" rel="noopener">
+          Instagram
+        </a>
+      </div>
+    </footer>
+
+    <!-- NOTIFIKASI -->
+    <div id="toast" class="toast"></div>
+    <script src="script.js"></script>
+  </body>
+</html>
